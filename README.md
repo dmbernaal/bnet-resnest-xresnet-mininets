@@ -23,6 +23,7 @@ from bnet.train import Learner
 from bnet.databunch import DataBunch
 from bnet.activations import Swish, Mila, Mish, BentID
 from bnet.models import mininest_ba, mininest_bn, mininet, xmininet, xsemininet
+from bnet.optimizers import Ranger, Adahessian, Ralamb, RangerLars
 ```
 
 ## 2. Load data
