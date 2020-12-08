@@ -16,6 +16,50 @@ at https://github.com/yuhuixu1993/BNET.*
 
 **Link to their github it posted above**.
 
+## 1. Load bnet modules
+```python
+import torch
+from bnet.train import Learner
+from bnet.databunch import DataBunch
+from bnet.activations import Swish, Mila, Mish, BentID
+from bnet.models import mininest_ba, mininest_bn, mininet, xmininet, xsemininet
+```
+
+## 2. Load data
+```python
+ROOT = Path('./data/imagenette2-160/')
+data = DataBunch(root=ROOT, bs=32, num_workers=0, tfms=tfms)
+```
+
+## 3. Create Learner and train
+```python
+# hyper params
+wd = 0.001
+lr = 1e-2
+betas = (0.9, 0.99)
+eps = 1e-6
+p = 0.2
+
+# creating model
+model = xsemininet(c_in=3, n_out=10, norm='bnet', p=p, act_cls='mish')
+
+# selecting optimizer
+opt_fn = RangerLars(model.parameters(), lr=lr, weight_decay=wd, betas=betas, eps=eps)
+
+# cross entropy for loss
+loss_fn = torch.nn.CrossEntropyLoss()
+
+# creating learner
+learn = Learner(
+    data=data,
+    model=model,
+    opt_fn=opt_fn,
+    loss_fn=loss_fn,
+    lr=lr,
+    wd=wd
+)
+```
+
 ## Dataset
 I am using the FastAI Imagenette dataset which can be found and downloaded here: https://github.com/fastai/imagenette
 
