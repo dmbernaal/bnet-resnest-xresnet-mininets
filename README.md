@@ -28,7 +28,7 @@ from bnet.models import mininest_ba, mininest_bn, mininet, xmininet, xsemininet
 ## 2. Load data
 ```python
 ROOT = Path('./data/imagenette2-160/')
-data = DataBunch(root=ROOT, bs=32, num_workers=0, tfms=tfms)
+data = DataBunch(root=ROOT, bs=32, num_workers=0)
 ```
 
 ## 3. Create Learner and train
@@ -58,6 +58,9 @@ learn = Learner(
     lr=lr,
     wd=wd
 )
+
+# train for 10 epochs
+learn.fit(10)
 ```
 
 ## Dataset
