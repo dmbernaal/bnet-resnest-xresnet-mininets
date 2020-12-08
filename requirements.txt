@@ -1,0 +1,8 @@
+pytorch==1.6.0
+torchvision==0.7.0
+pandas==0.24.2
+fastcore==0.1.39
+fastai==2.0.0
+torch-lr-finder==0.2.1
+tqdm==4.48.2
+matplotlib==3.0.3
